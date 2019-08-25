@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+			function Node(node_name){
+				this.node_name=node_name;
+				this.folderInFolder=[];
+				this.folder=null;
+				this.addInsideFolder=function(newNodeName){
+					this.folderInFolder.push(new Node(newNodeName));
+				}
+				
+				
+				this.deleteFolderInFolderByName=function(name){
+					for(var i=0;i<this.folderInFolder.length;i++){
+						if(this.folderInFolder[i].node_name==name){
+							this.folderInFolder.splice(i,1);
+						}
+					}
+				}
+			}
+			//----------------
+			
+			var root=new Node('root');
+			
+			//----------------
+			function appendToNodeNameHelper(root,oldNodeName,newNodeName){
+				//recursively search the root and then the children of the root, and then the children of children
+				if(root.children.length==0 && root.node_name!=oldNodeName){
+					return false;
+				}else{
+					if(oldNodeName==root.node_name){
+						var newNode=new Node(newNodeName);
+						newNode.parent=root;
+						root.children.push(newNode);
+					}else{
+						for(var i=0;i<root.children.length;i++){
+							appendToNodeNameHelper(root.children[i],oldNodeName,newNodeName);
+						}
+						
+					}
+					
+				}
+			}
+			function addNewNode(oldNodeName,newNodeName){
+				appendToNodeNameHelper(root,oldNodeName,newNodeName);
+			}
+			
+			
+			
+			
+			
+			// root.deleteSelf();
+			
+			
+			console.log('haha',root);
+			root.children.push(new Node("children1"));
+			root.children.push(new Node("children2"));
+			root.children.push(new Node("children3"));
+			addNewNode('children3','newNode');
+			addNewNode('children3','newNode2');
+			
+			// root.children.splice(0,1);
+			// deleteNode('children3');
+			console.log(root); 
+		</script>
+	</body>
+</html>
