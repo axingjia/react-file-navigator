@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class NaviItem extends Component{
+export class CellComponent extends Component{
 	constructor(prop){
 		super(prop);
 		this.state={active:false};

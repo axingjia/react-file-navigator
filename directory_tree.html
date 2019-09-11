@@ -31,16 +31,16 @@
 			//----------------
 			function appendToNodeNameHelper(root,oldNodeName,newNodeName){
 				//recursively search the root and then the children of the root, and then the children of children
-				if(root.children.length==0 && root.node_name!=oldNodeName){
+				if(root.folderInFolder.length==0 && root.node_name!=oldNodeName){
 					return false;
 				}else{
 					if(oldNodeName==root.node_name){
 						var newNode=new Node(newNodeName);
-						newNode.parent=root;
-						root.children.push(newNode);
+						// newNode.parent=root;
+						root.folderInFolder.push(newNode);
 					}else{
-						for(var i=0;i<root.children.length;i++){
-							appendToNodeNameHelper(root.children[i],oldNodeName,newNodeName);
+						for(var i=0;i<root.folderInFolder.length;i++){
+							appendToNodeNameHelper(root.folderInFolder[i],oldNodeName,newNodeName);
 						}
 						
 					}
@@ -51,6 +51,10 @@
 				appendToNodeNameHelper(root,oldNodeName,newNodeName);
 			}
 			
+			function addNewNodeByCo(levelNum,whichNum,newNodeName){
+				//its not possible
+			}
+			
 			
 			
 			
@@ -59,11 +63,13 @@
 			
 			
 			console.log('haha',root);
-			root.children.push(new Node("children1"));
-			root.children.push(new Node("children2"));
-			root.children.push(new Node("children3"));
-			addNewNode('children3','newNode');
-			addNewNode('children3','newNode2');
+			// root.children.push(new Node("children1"));
+			// root.children.push(new Node("children2"));
+			// root.children.push(new Node("children3"));
+			// addNewNode('children3','newNode');
+			// addNewNode('children3','newNode2');
+			addNewNode('root','afterRoot');
+			console.log('afterhaha',root);
 			
 			// root.children.splice(0,1);
 			// deleteNode('children3');
