@@ -8,7 +8,7 @@
 // };
 
 import * as ActionTypes from './ActionTypes';
-import {addNewNode,appendToNodeNameHelper,ROOT, Node} from '../shared/node';
+import {addNewNode,appendToNodeNameHelper,unFlagAllByParent,ROOT, Node} from '../shared/node';
 
 var startroot=new Node('root');
 
@@ -22,6 +22,9 @@ export const Root = (state = { root: startroot}, action) => {
 			// root=addNewNode(action.payload.oldNodeName,action.payload.newNodeName);
 			console.log('inside tree reducer',root);
             return {...state, root:root};
+		case ActionTypes.FLAG_ACTIVE:
+			var root=unFlagAllByParent(stateroot,action.payload.parentsName);
+			return {...state, root:root};
         default:
             return state;
     }

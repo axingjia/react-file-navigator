@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import  {CellComponent} from './CellComponent.js';
+import  {LevelComponent} from './LevelComponent.js';
 import { addCell,changeName,deleteCell} from '../redux/ActionCreators';
 import { connect } from 'react-redux';
 import { addToRoot} from '../redux/ActionCreators';
@@ -13,13 +14,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
 	// addfromRoot: (oldNodeName,newNodeName) => dispatch(postComment(dishId, rating, author, comment)),
+    unFlagAllByParent:(parentsName)=>dispatch(unFlagAllByParent(parentsName)),
     addToRoot: (newNodeName) => dispatch(addToRoot(newNodeName))
 });
 
 class Main extends Component {
 
     constructor(props) {
-    super(props);
+    
+        super(props);
+        this.addToRoot= this.addToRoot.bind(this);
      
     // this.state = {
     //   dishes: DISHES,
@@ -33,6 +37,14 @@ class Main extends Component {
     
   }
 
+  addToRoot(){
+      this.props.addToRoot('another one');
+      this.forceUpdate()
+  }
+  unFlagAllByParent(){
+      this.props.unFlagAllByParent('another one');
+      this.forceUpdate()
+  }
   
 
 
@@ -40,18 +52,10 @@ class Main extends Component {
 	  return (
 	  <div>
         <div className="space"> </div>
-        <div className="level">
-            {}
-            <div style={{overflowY:"scroll",height:"inherit"}}>
-            
-            {this.props.root.folderInFolder.map(function(current,index){
-                return <CellComponent key={index}value={current.node_name}></CellComponent>;
-            })}
-            </div>
-            
-            {<button style={{position:"absolute",bottom:"0px",right:"0px"}} onClick={()=>{this.props.addToRoot('root','another one');this.forceUpdate()}}>+</button>}
-        </div>
+        <LevelComponent arrayOfValue={this.props.root.folderInFolder} onButtonClick={this.addToRoot} unFlagAllByParent={this.}></LevelComponent>
+        
       </div>
+      
   );
     
   }

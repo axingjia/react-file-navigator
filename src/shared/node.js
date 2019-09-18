@@ -5,6 +5,7 @@ export function Node(node_name){
 	this.addInsideFolder=function(newNodeName){
 		this.folderInFolder.push(new Node(newNodeName));
 	}
+	this.active=false;
 	
 	
 	this.deleteFolderInFolderByName=function(name){
@@ -38,8 +39,37 @@ export function addNewNode(oldNodeName,newNodeName){
 	var newRoot=appendToNodeNameHelper(root,oldNodeName,newNodeName);
 	return newRoot;
 }
+
+export function unFlagAllByParentHelper(root,parentNodeName){
+	//recursively search the root and then the children of the root, and then the children of children
+	if(root.folderInFolder.length==0 && root.node_name!=parentNodeName){
+		return false;
+	}else{
+		if(parentNodeName==root.node_name){
+			// var newNode=new Node(newNodeName);
+			// newNode.parent=root;
+			// root.folderInFolder.push(newNode);
+			root.folderInFolder.forEach(function(item,index){
+				item.active=false;
+				
+			})
+			return root;
+		}else{
+			for(var i=0;i<root.folderInFolder.length;i++){
+				unFlagAllByParentHelper(root.folderInFolder[i],parentNodeName);
+			}
+			
+		}
+		
+	}
+}
+
+export function unFlagAllByParent(parentNodeName){
+	var newRoot=unFlagAllByParentHelper(root,parentNodeName);
+	return newRoot;
+}
 var root=new Node('root');
-root.folderInFolder.push(new Node("children1"));
-root.folderInFolder.push(new Node("children2"));
-root.folderInFolder.push(new Node("children3"));
+// root.folderInFolder.push(new Node("children1"));
+// root.folderInFolder.push(new Node("children2"));
+// root.folderInFolder.push(new Node("children3"));
 export const ROOT=root;

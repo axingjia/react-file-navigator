@@ -19,5 +19,23 @@ body {
 .item{
 	border:1px solid #ccc;
 	width:100px;
+	display: inline-block;
 	position: relative;
+}
+
+.arrow{
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  border-left: 10px solid black;
+  vertical-align: bottom;
+  position: absolute;
+  right: -11px;
+  top: -1px;
+  /* clip: rect(-100px,-100px,-100px,-100px); */
+}
+
+.grey{
+	background-color: #ccc;
 }

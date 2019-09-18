@@ -23,6 +23,11 @@ export const addToRoot=(newNodeName)=>({
 			newNodeName:newNodeName}
 })
 
+export const flagActive=(parentsName)=>({
+	type:ActionTypes.FLAG_ACTIVE,
+	payload:{parentsName:parentsName}
+});
+
 // 
 // export const addFeedback=(feedback)=>({
 //     type: ActionTypes.ADD_FEEDBACK,
