@@ -16,4 +16,4 @@ Close composes of not showing the child element, actually, its recursive, if the
 
 rename composes of finding the element, and changing the name is easy
 
-So the hard part is finding, and closing
+So the hard part is finding, closing, and deleting
