@@ -52,7 +52,8 @@ class Main extends Component {
 	  return (
 	  <div>
         <div className="space"> </div>
-        <LevelComponent arrayOfValue={this.props.root.folderInFolder} onButtonClick={this.addToRoot} unFlagAllByParent={this.}></LevelComponent>
+        {/*<LevelComponent arrayOfValue={this.props.root.folderInFolder} onButtonClick={this.addToRoot} unFlagAllByParent={this.}></LevelComponent>*/}
+        <LevelComponent arrayOfValue={this.props.root.folderInFolder} onButtonClick={this.addToRoot}></LevelComponent>
         
       </div>
       
